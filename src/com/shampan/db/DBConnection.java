@@ -4,6 +4,9 @@
  */
 package com.shampan.db;
 
+import com.bdit.db.codec.UserCodec;
+import com.bdit.db.codec.StudentCodec;
+import com.bdit.db.codec.TeacherCodec;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientOptions;
 import com.mongodb.ServerAddress;
@@ -11,7 +14,7 @@ import com.mongodb.client.MongoDatabase;
 import com.shampan.db.codec.BasicProfileCodec;
 import com.shampan.db.codec.CountriesCodec;
 import com.shampan.db.codec.ReligionsCodec;
-import com.shampan.db.codec.UserCodec;
+
 import com.shampan.util.PropertyProvider;
 import org.bson.codecs.configuration.CodecRegistries;
 import org.bson.codecs.configuration.CodecRegistry;
@@ -48,16 +51,22 @@ public class DBConnection {
             setDbPort(Integer.parseInt(PropertyProvider.get("port")));
             setDbName(PropertyProvider.get("dbname"));
 
-            UserCodec userCodec = new UserCodec();
+            //UserCodec userCodec = new UserCodec();
             BasicProfileCodec basicProfileCodec = new BasicProfileCodec();
             CountriesCodec countriesCodec = new CountriesCodec();
             ReligionsCodec religionCodec = new ReligionsCodec();
+            UserCodec userCodec = new UserCodec();
+            TeacherCodec teacherCodec = new TeacherCodec();
+            StudentCodec studentsCodec = new StudentCodec();
             CodecRegistry codecRegistry = CodecRegistries.fromRegistries(
                     MongoClient.getDefaultCodecRegistry(),
                     CodecRegistries.fromCodecs(userCodec),
+                    CodecRegistries.fromCodecs(teacherCodec),
+                    CodecRegistries.fromCodecs(studentsCodec),
                     CodecRegistries.fromCodecs(basicProfileCodec),
                     CodecRegistries.fromCodecs(countriesCodec),
                     CodecRegistries.fromCodecs(religionCodec)
+                    
                     
             );
 
