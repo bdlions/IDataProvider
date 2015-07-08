@@ -1,6 +1,8 @@
 package com.viewsoft.db.collections.builder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.viewsoft.db.collections.StudentDAO;
+import com.viewsoft.db.collections.fragment.BloodGroup;
+import com.viewsoft.db.collections.fragment.Gender;
 /**
  *
  * @author bdit
@@ -16,9 +18,10 @@ public class StudentDAOBuilder {
     private String photo;
     private String phone;
     private String email;
-    private String bloodGroup;
     private String currentAddress;
     private String permanentAddress;
+    private Gender gender;
+    private BloodGroup bloodGroup;
     
     public StudentDAOBuilder()
     {
@@ -69,11 +72,6 @@ public class StudentDAOBuilder {
         return this;
     }
 
-    public StudentDAOBuilder setBloodGroup(String bloodGroup) {
-        this.bloodGroup = bloodGroup;
-        return this;
-    }
-
     public StudentDAOBuilder setCurrentAddress(String currentAddress) {
         this.currentAddress = currentAddress;
         return this;
@@ -84,7 +82,15 @@ public class StudentDAOBuilder {
         return this;
     }
     
+    public StudentDAOBuilder setGender(Gender gender) {
+        this.gender = gender;
+        return this;
+    }
     
+    public StudentDAOBuilder setBloodGroup(BloodGroup bloodGroup) {
+        this.bloodGroup = bloodGroup;
+        return this;
+    }
 
     public StudentDAO build()
     {
@@ -96,9 +102,11 @@ public class StudentDAOBuilder {
         student.setMotherName(motherName);
         student.setPhoto(photo);
         student.setPhone(phone);
-        student.setEmail(email);
-        student.setBloodGroup(bloodGroup);
+        student.setEmail(email);  
+        student.setCurrentAddress(currentAddress);
         student.setPermanentAddress(permanentAddress);
+        student.setGender(gender);
+        student.setBloodGroup(bloodGroup);
         return student;
     }
     

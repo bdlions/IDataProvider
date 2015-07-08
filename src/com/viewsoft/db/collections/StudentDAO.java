@@ -2,6 +2,9 @@ package com.viewsoft.db.collections;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.viewsoft.db.collections.fragment.BloodGroup;
+import com.viewsoft.db.collections.fragment.Gender;
 import org.bson.BsonDocument;
 import org.bson.BsonDocumentWrapper;
 import org.bson.codecs.configuration.CodecRegistry;
@@ -23,9 +26,10 @@ public class StudentDAO implements Bson{
     private String photo;
     private String phone;
     private String email;
-    private String bloodGroup;
     private String currentAddress;
     private String permanentAddress;
+    private Gender gender;
+    private BloodGroup bloodGroup;
     
     public String get_id() {
         return _id;
@@ -99,14 +103,6 @@ public class StudentDAO implements Bson{
         this.email = email;
     }
 
-    public String getBloodGroup() {
-        return bloodGroup;
-    }
-
-    public void setBloodGroup(String bloodGroup) {
-        this.bloodGroup = bloodGroup;
-    }
-
     public String getCurrentAddress() {
         return currentAddress;
     }
@@ -122,8 +118,35 @@ public class StudentDAO implements Bson{
     public void setPermanentAddress(String permanentAddress) {
         this.permanentAddress = permanentAddress;
     }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public BloodGroup getBloodGroup() {
+        return bloodGroup;
+    }
+
+    public void setBloodGroup(BloodGroup bloodGroup) {
+        this.bloodGroup = bloodGroup;
+    }
     
     
+    @Override
+    public String toString() {
+        ObjectMapper mapper = new ObjectMapper();
+        String json = "";
+        try {
+            json = mapper.writeValueAsString(this);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return json;
+    }
     
     @Override
     public <C> BsonDocument toBsonDocument(final Class<C> documentClass, final CodecRegistry codecRegistry) {
