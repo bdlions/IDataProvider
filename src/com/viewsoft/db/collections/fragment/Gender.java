@@ -8,15 +8,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class Gender {
 
-    private String _id;
+    private int id;
     private String title;
 
-    public String get_id() {
-        return _id;
+    public int getId() {
+        return id;
     }
 
-    public void set_id(String _id) {
-        this._id = _id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {

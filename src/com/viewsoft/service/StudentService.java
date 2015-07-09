@@ -25,14 +25,14 @@ public class StudentService {
         StudentService studenService = new StudentService();
         //studenService.addStudent("{\"firstName\":\"s2myfirstname\",\"lastName\":\"s2mylastname\",\"fatherName\":\"s2myFatherName\",\"motherName\":\"s2myMothername\",\"photo\":\"s2.jpg\",\"phone\":\"s201712341213\",\"email\":\"tests2@test.com\",\"bloodGroup\":\"A+\",\"currentAddress\":\"s2myCurrentAddress\",\"permanentAddress\":\"s2mypermanentaddress\",\"designation\":\"s2mydesignation\",\"gender\":\"{\"_id\":\"1\",\"title\":\"Male\"}\"}");
         Gender gender = new Gender();
-        gender.set_id("1");
+        gender.setId(1);
         gender.setTitle("Male");
         BloodGroup bloodGroup = new BloodGroup();
-        bloodGroup.set_id("1");
+        bloodGroup.setId("1");
         bloodGroup.setTitle("A+");
         StudentDAOBuilder studentDAOBuilder = new StudentDAOBuilder()
-                                                    .setFirstName("s1noor")
-                                                    .setLastName("s1lalam")
+                                                    .setFirstName("s6noor")
+                                                    .setLastName("s6lalam")
                                                     .setGender(gender)
                                                     .setBloodGroup(bloodGroup);
         StudentDAO sutdentDAO = studentDAOBuilder.build();
