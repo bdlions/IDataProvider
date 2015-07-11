@@ -1,14 +1,14 @@
 package com.viewsoft.db.collections.builder;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.viewsoft.db.collections.TeacherDAO;
+import com.viewsoft.db.collections.StaffDAO;
 import com.viewsoft.db.collections.fragment.BloodGroup;
 import com.viewsoft.db.collections.fragment.Gender;
 /**
  *
  * @author noor
  */
-public class TeacherDAOBuilder {    
-    private TeacherDAO teacher;
+public class StaffDAOBuilder {    
+    private StaffDAO staff;
     private String _id;
     private String userId;
     private String firstName;
@@ -16,58 +16,58 @@ public class TeacherDAOBuilder {
     private Gender gender;
     private BloodGroup bloodGroup;
     
-    public TeacherDAOBuilder()
+    public StaffDAOBuilder()
     {
-        teacher = new TeacherDAO();
+        staff = new StaffDAO();
     }
-    public TeacherDAOBuilder set_id(String _id) {
+    public StaffDAOBuilder set_id(String _id) {
         this._id = _id;
         return this;
     }
 
-    public TeacherDAOBuilder setUserId(String userId) {
+    public StaffDAOBuilder setUserId(String userId) {
         this.userId = userId;
         return this;
     }
 
-    public TeacherDAOBuilder setFirstName(String firstName) {
+    public StaffDAOBuilder setFirstName(String firstName) {
         this.firstName = firstName;
         return this;
     }
 
-    public TeacherDAOBuilder setLastName(String lastName) {
+    public StaffDAOBuilder setLastName(String lastName) {
         this.lastName = lastName;
         return this;
     }
-    public TeacherDAOBuilder setGender(Gender gender) {
+    public StaffDAOBuilder setGender(Gender gender) {
         this.gender = gender;
         return this;
     }
     
-    public TeacherDAOBuilder setBloodGroup(BloodGroup bloodGroup) {
+    public StaffDAOBuilder setBloodGroup(BloodGroup bloodGroup) {
         this.bloodGroup = bloodGroup;
         return this;
     }
     
-    public TeacherDAO build()
+    public StaffDAO build()
     {
-        teacher.set_id(_id);
-        teacher.setUserId(userId);
-        teacher.setFirstName(firstName);
-        teacher.setLastName(lastName);
-        teacher.setBloodGroup(bloodGroup);
-        teacher.setGender(gender);  
+        staff.set_id(_id);
+        staff.setUserId(userId);
+        staff.setFirstName(firstName);
+        staff.setLastName(lastName);
+        staff.setBloodGroup(bloodGroup);
+        staff.setGender(gender);  
         
-        return teacher;
+        return staff;
     }
     
-    public TeacherDAO build(String daoContent) {
+    public StaffDAO build(String daoContent) {
         ObjectMapper mapper = new ObjectMapper();
         try {
-            teacher = mapper.readValue(daoContent, TeacherDAO.class);
+            staff = mapper.readValue(daoContent, StaffDAO.class);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return teacher;
+        return staff;
     }
 }

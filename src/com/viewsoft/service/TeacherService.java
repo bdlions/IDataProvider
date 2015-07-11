@@ -12,16 +12,19 @@ import org.json.JSONObject;
 
 /**
  *
- * @author nazmul
+ * @author noor
  */
 public class TeacherService {
+    
     private static TeacherModel teacherModel = new TeacherModel();
     public static void main(String args[])
-    {   
-        TeacherService teacherService = new TeacherService();
-        teacherService.addTeacher("{\"firstName\":\"myfirstname2\",\"lastName\":\"mylastname2\",\"fatherName\":\"myFatherName2\",\"motherName\":\"myMothername2\",\"photo\":\"2.jpg\",\"phone\":\"01712341213\",\"email\":\"test2@test.com\",\"bloodGroup\":\"A+\",\"currentAddress\":\"myCurrentAddress2\",\"permanentAddress\":\"mypermanentaddress2\",\"designation\":\"mydesignation2\"}");
-        //System.out.println(teacherService.getAllTeachers());
+    {
+        TeacherService teacherssService = new TeacherService();
+        //teacherssService.addTeacher("{\"firstName\":\"teacherfirstname\",\"lastName\":\"teacherlastname\",\"bloodGroup\":\"bloodGroup\",\"gender\":\"gender\",\"photo\":\"s2.jpg\",\"mobileNumber\":\"s201712341213\",\"emailAddress\":\"tests2@test.com\",\"presentAddress\":\"presentAddress\",\"permanentAddress\":\"permanentaddress\",\"occupation\":\"occupation\,\"relationWithTeacher\":\"relationwithteacher\",\"description\":\"description\"}");
+        teacherssService.addTeacher("{\"firstName\":\"s2myfirstname\",\"lastName\":\"s2mylastname\",\"bloodGroup\":\"bloodGroup\",\"gender\":\"gender\"}");
+        //System.out.println(teacherssService.getAllTeachers());
     }
+    
     public static String addTeacher(String additionalData)
     {
         String response = teacherModel.addTeacher(additionalData);

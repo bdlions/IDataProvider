@@ -10,13 +10,12 @@ import org.apache.commons.collections4.IteratorUtils;
 
 /**
  *
- * @author nazmul
+ * @author nazmul hasan
  */
 public class TeacherModel {
     public String addTeacher(String additionalData)
     {
         String response = "";
-        
         MongoCollection<TeacherDAO> mongoCollectionTeachers
                 = DBConnection.getInstance().getConnection().getCollection("teachers", TeacherDAO.class); 
         TeacherDAO teacherInfo = new TeacherDAOBuilder().build(additionalData);

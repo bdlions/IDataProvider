@@ -1,6 +1,6 @@
 package com.viewsoft.db.codec;
 
-import com.viewsoft.db.collections.TeacherDAO;
+import com.viewsoft.db.collections.GuardianDAO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.MongoClient;
 import java.util.UUID;
@@ -18,35 +18,35 @@ import org.bson.codecs.EncoderContext;
  *
  * @author noor
  */
-public class TeacherCodec  implements CollectibleCodec<TeacherDAO>{
+public class GuardianCodec  implements CollectibleCodec<GuardianDAO>{
     
 
 
     private Codec<Document> documentCodec;
 
-    public TeacherCodec() {
+    public GuardianCodec() {
         this.documentCodec = MongoClient.getDefaultCodecRegistry().get(Document.class);
     }
 
     @Override
-    public TeacherDAO decode(BsonReader reader, DecoderContext decoderContext) {
+    public GuardianDAO decode(BsonReader reader, DecoderContext decoderContext) {
         Document document = documentCodec.decode(reader, decoderContext);
         ObjectMapper mapper = new ObjectMapper();
-        TeacherDAO teacherInfo = new TeacherDAO();
+        GuardianDAO guardianInfo = new GuardianDAO();
         try {
-            teacherInfo = mapper.readValue(document.toJson().toString(), TeacherDAO.class);
+            guardianInfo = mapper.readValue(document.toJson().toString(), GuardianDAO.class);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return teacherInfo;
+        return guardianInfo;
     }
 
     @Override
-    public void encode(BsonWriter writer, TeacherDAO teacherInfo, EncoderContext encoderContext) {
+    public void encode(BsonWriter writer, GuardianDAO guardianInfo, EncoderContext encoderContext) {
         ObjectMapper mapper = new ObjectMapper();
         String json = "";
         try {
-            json = mapper.writeValueAsString(teacherInfo);
+            json = mapper.writeValueAsString(guardianInfo);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -54,28 +54,28 @@ public class TeacherCodec  implements CollectibleCodec<TeacherDAO>{
     }
 
     @Override
-    public Class<TeacherDAO> getEncoderClass() {
-        return TeacherDAO.class;
+    public Class<GuardianDAO> getEncoderClass() {
+        return GuardianDAO.class;
     }
                         
     @Override
-    public TeacherDAO generateIdIfAbsentFromDocument(TeacherDAO teacherInfo) {
-        if (!documentHasId(teacherInfo)) {
-            teacherInfo.set_id(UUID.randomUUID().toString());
+    public GuardianDAO generateIdIfAbsentFromDocument(GuardianDAO guardianInfo) {
+        if (!documentHasId(guardianInfo)) {
+            guardianInfo.set_id(UUID.randomUUID().toString());
         }
-        return teacherInfo;
+        return guardianInfo;
     }
 
     @Override
-    public boolean documentHasId(TeacherDAO teacherInfo) {
-        return teacherInfo.get_id() != null;
+    public boolean documentHasId(GuardianDAO guardianInfo) {
+        return guardianInfo.get_id() != null;
     }
 
     @Override
-    public BsonValue getDocumentId(TeacherDAO teacherInfo) {
-        if (!documentHasId(teacherInfo)) {
+    public BsonValue getDocumentId(GuardianDAO guardianInfo) {
+        if (!documentHasId(guardianInfo)) {
             throw new IllegalStateException("The document does not contain an _id");
         }
-        return new BsonString(teacherInfo.get_id());
+        return new BsonString(guardianInfo.get_id());
     }
 }

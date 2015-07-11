@@ -1,6 +1,6 @@
 package com.viewsoft.db.codec;
 
-import com.viewsoft.db.collections.TeacherDAO;
+import com.viewsoft.db.collections.StaffDAO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.MongoClient;
 import java.util.UUID;
@@ -18,35 +18,35 @@ import org.bson.codecs.EncoderContext;
  *
  * @author noor
  */
-public class TeacherCodec  implements CollectibleCodec<TeacherDAO>{
+public class StaffCodec  implements CollectibleCodec<StaffDAO>{
     
 
 
     private Codec<Document> documentCodec;
 
-    public TeacherCodec() {
+    public StaffCodec() {
         this.documentCodec = MongoClient.getDefaultCodecRegistry().get(Document.class);
     }
 
     @Override
-    public TeacherDAO decode(BsonReader reader, DecoderContext decoderContext) {
+    public StaffDAO decode(BsonReader reader, DecoderContext decoderContext) {
         Document document = documentCodec.decode(reader, decoderContext);
         ObjectMapper mapper = new ObjectMapper();
-        TeacherDAO teacherInfo = new TeacherDAO();
+        StaffDAO staffInfo = new StaffDAO();
         try {
-            teacherInfo = mapper.readValue(document.toJson().toString(), TeacherDAO.class);
+            staffInfo = mapper.readValue(document.toJson().toString(), StaffDAO.class);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return teacherInfo;
+        return staffInfo;
     }
 
     @Override
-    public void encode(BsonWriter writer, TeacherDAO teacherInfo, EncoderContext encoderContext) {
+    public void encode(BsonWriter writer, StaffDAO staffInfo, EncoderContext encoderContext) {
         ObjectMapper mapper = new ObjectMapper();
         String json = "";
         try {
-            json = mapper.writeValueAsString(teacherInfo);
+            json = mapper.writeValueAsString(staffInfo);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -54,28 +54,28 @@ public class TeacherCodec  implements CollectibleCodec<TeacherDAO>{
     }
 
     @Override
-    public Class<TeacherDAO> getEncoderClass() {
-        return TeacherDAO.class;
+    public Class<StaffDAO> getEncoderClass() {
+        return StaffDAO.class;
     }
                         
     @Override
-    public TeacherDAO generateIdIfAbsentFromDocument(TeacherDAO teacherInfo) {
-        if (!documentHasId(teacherInfo)) {
-            teacherInfo.set_id(UUID.randomUUID().toString());
+    public StaffDAO generateIdIfAbsentFromDocument(StaffDAO staffInfo) {
+        if (!documentHasId(staffInfo)) {
+            staffInfo.set_id(UUID.randomUUID().toString());
         }
-        return teacherInfo;
+        return staffInfo;
     }
 
     @Override
-    public boolean documentHasId(TeacherDAO teacherInfo) {
-        return teacherInfo.get_id() != null;
+    public boolean documentHasId(StaffDAO staffInfo) {
+        return staffInfo.get_id() != null;
     }
 
     @Override
-    public BsonValue getDocumentId(TeacherDAO teacherInfo) {
-        if (!documentHasId(teacherInfo)) {
+    public BsonValue getDocumentId(StaffDAO staffInfo) {
+        if (!documentHasId(staffInfo)) {
             throw new IllegalStateException("The document does not contain an _id");
         }
-        return new BsonString(teacherInfo.get_id());
+        return new BsonString(staffInfo.get_id());
     }
 }

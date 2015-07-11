@@ -16,7 +16,7 @@ import org.bson.conversions.Bson;
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class TeacherDAO implements Bson{
+public class GuardianDAO implements Bson{
     private String _id;
     private String userId;
     private String firstName;
@@ -73,6 +73,6 @@ public class TeacherDAO implements Bson{
     
     @Override
     public <C> BsonDocument toBsonDocument(final Class<C> documentClass, final CodecRegistry codecRegistry) {
-        return new BsonDocumentWrapper<TeacherDAO>(this, codecRegistry.get(TeacherDAO.class));
+        return new BsonDocumentWrapper<GuardianDAO>(this, codecRegistry.get(GuardianDAO.class));
     }
 }
