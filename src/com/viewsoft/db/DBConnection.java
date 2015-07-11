@@ -7,10 +7,14 @@ package com.viewsoft.db;
 import com.viewsoft.db.codec.UserCodec;
 import com.viewsoft.db.codec.StudentCodec;
 import com.viewsoft.db.codec.TeacherCodec;
+import com.viewsoft.db.codec.ManagingCommitteeCodec;
+import com.viewsoft.db.codec.StaffCodec;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientOptions;
 import com.mongodb.ServerAddress;
 import com.mongodb.client.MongoDatabase;
+import com.viewsoft.db.codec.GuardianCodec;
+//import com.viewsoft.db.codec.GenderCodec;
 
 import com.viewsoft.util.PropertyProvider;
 import org.bson.codecs.configuration.CodecRegistries;
@@ -51,12 +55,20 @@ public class DBConnection {
             //UserCodec userCodec = new UserCodec();
             UserCodec userCodec = new UserCodec();
             TeacherCodec teacherCodec = new TeacherCodec();
-            StudentCodec studentsCodec = new StudentCodec();
+            StudentCodec studentsCodec = new StudentCodec();            
+            GuardianCodec guardianCodec = new GuardianCodec();
+            //GenderCodec genderCodec = new GenderCodec(); 
+            ManagingCommitteeCodec managingCommitteesCodec = new ManagingCommitteeCodec();
+            StaffCodec staffCodec = new StaffCodec();
             CodecRegistry codecRegistry = CodecRegistries.fromRegistries(
                     MongoClient.getDefaultCodecRegistry(),
                     CodecRegistries.fromCodecs(userCodec),
                     CodecRegistries.fromCodecs(teacherCodec),
-                    CodecRegistries.fromCodecs(studentsCodec)
+                    CodecRegistries.fromCodecs(studentsCodec),
+                    CodecRegistries.fromCodecs(guardianCodec),
+                    CodecRegistries.fromCodecs(managingCommitteesCodec),
+                    CodecRegistries.fromCodecs(staffCodec)
+                    //CodecRegistries.fromCodecs(genderCodec)
             );
 
             MongoClientOptions options = MongoClientOptions.builder().codecRegistry(codecRegistry).build();
